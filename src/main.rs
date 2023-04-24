@@ -1,4 +1,4 @@
-// this is a program to practice advanced rust
+use std::io::{self, Read};
 
 enum Discount {
     Percentage(i32),
@@ -23,9 +23,23 @@ fn main() {
         _ => println!("not found"),
     }
 
+    let mut input_event = String::new();
+    let mut input_price = String::new();
+
+    println!("Please enter the event name");
+    io::stdin()
+        .read_line(&mut input_event)
+        .expect("Failed to read input");
+
+    println!("Please enter ticket price");
+    io::stdin()
+        .read_line(&mut input_price)
+        .expect("Failed to read price");
+    let price = input_price.trim().parse().expect("bad input");
+
     let ticket_1 = Ticket {
-        event: "music".to_owned(),
-        price: 51,
+        event: input_event.trim().to_owned(),
+        price: price,
     };
 
     match ticket_1 {
